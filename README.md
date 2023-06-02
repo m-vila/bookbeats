@@ -26,7 +26,6 @@ Follow these steps to run BookBeats on your local machine:
 3. Install the necessary packages by running the following command:
 
 ```
-npm install
 npm install express node-fetch cors dotenv
 ```
 
