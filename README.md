@@ -27,6 +27,7 @@ Follow these steps to run BookBeats on your local machine:
 
 ```
 npm install
+npm install express node-fetch cors dotenv
 ```
 
 4. Update the server.mjs file with your own API keys:
@@ -43,7 +44,7 @@ const SPOTIFY_API_KEY = "<Your Spotify API Key>";
 node server.mjs
 ```
 
-6. Open your web browser and go to http://localhost:3000.
+6. Open your web browser and go to http://localhost:3000. You can also double click on the index.html file from the folder.
 
 7. Enjoy BookBeats! Enter your favorite book and it will create a personalized playlist for you.
 
