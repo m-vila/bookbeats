@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BookBeats</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <h1>Welcome to BookBeats!</h1>
+    <h3>Get ready to rock with BookBeats!</h3>
+    <p>Enter the title and author of your favorite book and BookBeats will create a playlist inspired by the book's
+        theme.</p>
+    <h4>Start your musical adventure now!</h4>
+    <div id="inputContainer">
+        <input id="bookName" type="text" placeholder="E.g. The Martian by Andy Weir...">
+        <button onclick="fetchData()">Generate Playlist</button>
+        <div id="spinner"></div>
+    </div>
+    <p id="output"></p>
+    <div id="errorMessage" class="popup">
+        <span class="close-btn">x</span>
+        <p id="errorText"></p>
+    </div>    
+    <script src="app.js"></script>
+</body>
+
+</html>
