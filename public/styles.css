@@ -13,6 +13,9 @@ h1 {
     color: #F4EBE8;
     text-shadow: 2px 2px 4px #9198e5;
 }
+p {
+    text-align: center;
+}
 #inputContainer {
     display: flex;
     justify-content: center;
