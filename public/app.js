@@ -6,9 +6,9 @@ async function fetchData() {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
 
-    if (!bookName) {
+    if (!bookName || !numSongs) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a book name and author.';
+        errorText.textContent = 'Please enter a book name, author, and the number of songs.';
         return;
     }
 
@@ -32,8 +32,8 @@ async function fetchData() {
         return;
     }
 
-    const choicesText = data.choices[0].text.trim();
-    const songs = choicesText.split('\n');
+    const choicesContent = data.choices[0].message.content.trim();
+    const songs = choicesContent.split('\n');
     output.innerHTML = '';
     output.style.display = 'block';
     songs.forEach(song => {
@@ -47,6 +47,6 @@ async function fetchData() {
 
 window.onload = () => {
     document.querySelector('.close-btn').addEventListener('click', (event) => {
-        event.target.parentNode.style.display = 'none';
+        event.target.parentNode.style.display = 'none';q
     });
 }
