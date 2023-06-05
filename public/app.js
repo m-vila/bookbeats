@@ -26,7 +26,7 @@ async function fetchData() {
 
     if (data.error) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'An error occurred. Please make sure the book name and author are correct.';
+        errorText.textContent = 'An error occurred. Please check the API connection.';
         spinner.style.display = 'none';
         return;
     }
