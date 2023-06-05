@@ -2,12 +2,17 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+
+const __dirname = path.resolve(); 
 
 const app = express();
+const pathToEnv = path.resolve(process.cwd(), '../../.env');
+
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
-dotenv.config();
+app.use(express.static(path.join(__dirname, 'public')));
+dotenv.config({path: pathToEnv});
 
 const API_KEY = process.env.API_KEY;
 
