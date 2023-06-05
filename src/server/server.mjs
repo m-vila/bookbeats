@@ -19,18 +19,23 @@ const API_KEY = process.env.API_KEY;
 app.post('/fetchData', async (req, res) => {
     const bookName = req.body.bookName;
     const numSongs = req.body.numSongs;
-    const response = await fetch("https://api.openai.com/v1/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
             Authorization: `Bearer ${API_KEY}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            model: "text-davinci-003",
-            prompt: `Suggest a playlist of ${numSongs} songs for the book ${bookName}`,
-            max_tokens: 200,
-            temperature: 0.5,
-            stop: [`${parseInt(numSongs) + 1}.`]
+            model: "gpt-3.5-turbo",
+            messages: [{
+                role: "system",
+                content: "You are a helpful assistant."
+            }, {
+                role: "user",
+                content: `Suggest a playlist of ${numSongs} songs for the book ${bookName}`
+            }],
+            max_tokens: 500,
+            temperature: 0.5
         })
     })
     const data = await response.json()
