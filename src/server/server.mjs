@@ -18,6 +18,7 @@ const API_KEY = process.env.API_KEY;
 
 app.post('/fetchData', async (req, res) => {
     const bookName = req.body.bookName;
+    const numSongs = req.body.numSongs;
     const response = await fetch("https://api.openai.com/v1/completions", {
         method: "POST",
         headers: {
@@ -26,10 +27,10 @@ app.post('/fetchData', async (req, res) => {
         },
         body: JSON.stringify({
             model: "text-davinci-003",
-            prompt: `Suggest a playlist of 10 songs for the book ${bookName}`,
+            prompt: `Suggest a playlist of ${numSongs} songs for the book ${bookName}`,
             max_tokens: 200,
             temperature: 0.5,
-            stop: ["11."]
+            stop: [`${parseInt(numSongs) + 1}.`]
         })
     })
     const data = await response.json()
