@@ -1,5 +1,6 @@
 async function fetchData() {
     const bookName = document.getElementById('bookName').value;
+    const numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinner');
     const output = document.getElementById('output');
     const errorMessage = document.getElementById('errorMessage');
@@ -19,7 +20,7 @@ async function fetchData() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ bookName }),
+        body: JSON.stringify({ bookName, numSongs }),
     });
 
     const data = await response.json();
