@@ -60,6 +60,7 @@ button:hover {
 }
 #output {
     display: none;
+    list-style-type: none;
     max-width: 600px;
     margin-top: 20px;
     width: 80%;
