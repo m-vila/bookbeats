@@ -5,6 +5,7 @@ async function fetchData() {
     const output = document.getElementById('output');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
+    const generateButton = document.querySelector('button');
 
     if (!bookName || !numSongs) {
         errorMessage.style.display = 'block';
@@ -19,6 +20,7 @@ async function fetchData() {
         return;
     }
 
+    generateButton.disabled = true;
     spinner.style.display = 'block';
     output.textContent = '';
 
@@ -57,6 +59,7 @@ async function fetchData() {
         errorMessage.style.display = 'block';
         errorText.textContent = `An error occurred: ${error.message}`;
     } finally {
+        generateButton.disabled = false;
         spinner.style.display = 'none';
     }
 }
