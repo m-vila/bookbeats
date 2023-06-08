@@ -1,6 +1,6 @@
 async function fetchData() {
     const bookName = document.getElementById('bookName').value;
-    const numSongs = document.getElementById('numSongs').value;
+    let numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinner');
     const output = document.getElementById('output');
     const errorMessage = document.getElementById('errorMessage');
@@ -9,6 +9,13 @@ async function fetchData() {
     if (!bookName || !numSongs) {
         errorMessage.style.display = 'block';
         errorText.textContent = 'Please enter a book name, author, and the number of songs.';
+        return;
+    }
+
+    numSongs = Number(numSongs);
+    if (isNaN(numSongs) || !Number.isInteger(numSongs) || numSongs < 1 || numSongs > 30) {
+        errorMessage.style.display = 'block';
+        errorText.textContent = 'Invalid number of songs. Please make sure it is a number between 1 and 30.';
         return;
     }
 
@@ -47,6 +54,6 @@ async function fetchData() {
 
 window.onload = () => {
     document.querySelector('.close-btn').addEventListener('click', (event) => {
-        event.target.parentNode.style.display = 'none';q
+        event.target.parentNode.style.display = 'none';
     });
 }
