@@ -1,28 +1,21 @@
-async function fetchData() {
+const fetchData = async () => {
     const bookName = document.getElementById('bookName').value;
-    let numSongs = document.getElementById('numSongs').value;
+    const numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinner');
     const output = document.getElementById('output');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
-    const generateButton = document.querySelector('button');
+    const generateButton = document.querySelector('#generateButton');
 
-    if (!bookName || !numSongs) {
+    if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a book name, author, and the number of songs.';
+        errorText.textContent = 'Please enter a valid book name and a positive integer for the number of songs.';
         return;
     }
 
-    numSongs = Number(numSongs);
-    if (isNaN(numSongs) || !Number.isInteger(numSongs) || numSongs < 1 || numSongs > 30) {
-        errorMessage.style.display = 'block';
-        errorText.textContent = 'Invalid number of songs. Please make sure it is a number between 1 and 30.';
-        return;
-    }
-
-    generateButton.disabled = true;
     spinner.style.display = 'block';
     output.textContent = '';
+    generateButton.disabled = true;
 
     try {
         const response = await fetch('http://localhost:3000/fetchData', {
@@ -34,7 +27,7 @@ async function fetchData() {
         });
 
         if (!response.ok) {
-            throw new Error(`Server returned status code ${response.status}`);
+            throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
@@ -55,17 +48,18 @@ async function fetchData() {
             li.textContent = song;
             output.appendChild(li);
         });
+
     } catch (error) {
         errorMessage.style.display = 'block';
-        errorText.textContent = `An error occurred: ${error.message}`;
+        errorText.textContent = error.message;
     } finally {
-        generateButton.disabled = false;
         spinner.style.display = 'none';
+        generateButton.disabled = false;
     }
 }
 
-window.onload = () => {
-    document.querySelector('.close-btn').addEventListener('click', (event) => {
+window.addEventListener('load', () => {
+    document.querySelector('.close-btn').addEventListener('click', event => {
         event.target.parentNode.style.display = 'none';
     });
-}
+});
