@@ -7,9 +7,9 @@ const fetchData = async () => {
     const errorText = document.getElementById('errorText');
     const generateButton = document.querySelector('#generateButton');
 
-    if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || !Number.isInteger(parseFloat(numSongs))) {
+    if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a valid book name and a positive integer for the number of songs.';
+        errorText.textContent = 'Please enter a book name and number of songs between 1 and 30.';
         return;
     }
 
@@ -27,7 +27,7 @@ const fetchData = async () => {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('An error occurred. Please check the network response');
         }
 
         const data = await response.json();
