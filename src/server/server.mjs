@@ -32,7 +32,7 @@ app.post('/fetchData', async (req, res) => {
                 content: "You are a helpful assistant."
             }, {
                 role: "user",
-                content: `Suggest a playlist of ${numSongs} songs for the book ${bookName}`
+                content: `Suggest a playlist of ${numSongs} songs for the book ${bookName}. Show the list of songs only.`
             }],
             max_tokens: 500,
             temperature: 0.5
