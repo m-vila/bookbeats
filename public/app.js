@@ -5,11 +5,11 @@ const fetchData = async () => {
     const output = document.getElementById('output');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
-    const generateButton = document.querySelector('#generateButton');
+    const generateButton = document.querySelector('#playlistForm button');
 
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a book name and number of songs between 1 and 30.';
+        errorText.textContent = 'Please enter a book name and a number of songs between 1 and 30.';
         return;
     }
 
@@ -57,6 +57,11 @@ const fetchData = async () => {
         generateButton.disabled = false;
     }
 }
+
+document.getElementById('playlistForm').addEventListener('submit', event => {
+    event.preventDefault();
+    fetchData();
+});
 
 window.addEventListener('load', () => {
     document.querySelector('.close-btn').addEventListener('click', event => {

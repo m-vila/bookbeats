@@ -53,6 +53,12 @@ button:disabled {
     background-color: #aaa;
     cursor: not-allowed;
 }
+#playlistForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 #spinner {
     display: none;
     border: 8px solid #F4EBE8;
