@@ -9,15 +9,15 @@
 <body>
     <h1>BookBeats</h1>
     <h3>Get ready to rock with BookBeats 🎸</h3>
-    <p>Enter the title and author of your favorite book, the number of songs to generate </br> 
+    <p id="description">Enter the title and author of your favorite book, the number of songs to generate </br> 
         and BookBeats will create a playlist inspired by the book's theme</p>
     <h4>🎵 Start your musical adventure now 🎵</h4>
-    <div id="inputContainer">
+    <form id="playlistForm">
         <input id="bookName" type="text" placeholder="E.g. The Martian by Andy Weir...">
         <input id="numSongs" type="number" min="1" max="30" value="10">
-        <button onclick="fetchData()">Generate Playlist</button>
+        <button type="submit">Generate Playlist</button>
         <div id="spinner"></div>
-    </div>
+    </form>
     <p id="output"></p>
     <div id="errorMessage" class="popup">
         <span class="close-btn">x</span>

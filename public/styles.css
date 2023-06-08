@@ -13,7 +13,7 @@ h1 {
     color: #F4EBE8;
     text-shadow: 2px 2px 4px #9198e5;
 }
-p {
+#description {
     text-align: center;
 }
 #inputContainer {
@@ -47,6 +47,17 @@ button:hover {
     color: #000000;
     background-color: #29E7CD;
 
+}
+button:disabled {
+    color: #000000;
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+#playlistForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 #spinner {
     display: none;
