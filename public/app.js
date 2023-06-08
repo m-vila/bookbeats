@@ -22,34 +22,43 @@ async function fetchData() {
     spinner.style.display = 'block';
     output.textContent = '';
 
-    const response = await fetch('http://localhost:3000/fetchData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ bookName, numSongs }),
-    });
+    try {
+        const response = await fetch('http://localhost:3000/fetchData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ bookName, numSongs }),
+        });
 
-    const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`Server returned status code ${response.status}`);
+        }
 
-    if (data.error) {
+        const data = await response.json();
+
+        if (data.error) {
+            errorMessage.style.display = 'block';
+            errorText.textContent = 'An error occurred. Please check the API connection.';
+            spinner.style.display = 'none';
+            return;
+        }
+
+        const choicesContent = data.choices[0].message.content.trim();
+        const songs = choicesContent.split('\n');
+        output.innerHTML = '';
+        output.style.display = 'block';
+        songs.forEach(song => {
+            const li = document.createElement('li');
+            li.textContent = song;
+            output.appendChild(li);
+        });
+    } catch (error) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'An error occurred. Please check the API connection.';
+        errorText.textContent = `An error occurred: ${error.message}`;
+    } finally {
         spinner.style.display = 'none';
-        return;
     }
-
-    const choicesContent = data.choices[0].message.content.trim();
-    const songs = choicesContent.split('\n');
-    output.innerHTML = '';
-    output.style.display = 'block';
-    songs.forEach(song => {
-        const li = document.createElement('li');
-        li.textContent = song;
-        output.appendChild(li);
-    });
-
-    spinner.style.display = 'none';
 }
 
 window.onload = () => {
