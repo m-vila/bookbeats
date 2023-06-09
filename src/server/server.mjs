@@ -4,15 +4,18 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const __dirname = path.resolve(); 
-
 const app = express();
-const pathToEnv = path.resolve(process.cwd(), '../../.env');
+const __dirname = path.resolve(); 
+const pathToEnv = path.resolve(__dirname, '.env');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config({path: pathToEnv});
+
+app.get('/spotify-client-id', (req, res) => {
+    res.send(process.env.SPOTIFY_CLIENT_ID);
+});
 
 const API_KEY = process.env.API_KEY;
 
