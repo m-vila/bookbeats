@@ -1,7 +1,9 @@
 # BookBeats: Immerse yourself to the beat of your story
 
-## **About BookBeats**
+## **What is it?**
+BookBeats is a web app that generates Spotify playlists based on a book's theme using ChatGPT & Goodreads. Simply insert the title, author, and song count for a custom reading soundtrack.
 
+## **About BookBeats**
 Having just finished Andy Weir's 'Artemis' 🌖 and as I was getting ready for 'Project Hail Mary' 🚀 (yeah, I'm a huge Andy Weir fan 😎), the concept of BookBeats 🎵📚 struck me. Isn't it wild how certain themes are intrinsically tied to a particular music? For me, the concept of 'space' is forever intertwined with the amazing soundtrack of 'Interstellar' 💫, composed by Hans Zimmer. It's like a private concert in my mind while reading. This sparked curiosity about the potential symbiosis between music, reading, and the immersive experience they both create together. Hang on - what if we could actually do it? What if we could have a curated playlist for a specific book reflecting its theme?
 
 And so, BookBeats was born 🎉. It's a tool designed to amplify your reading experience. If you're one of those people who find music a catalyst to focus and dive into the story, this application is for you.
@@ -29,24 +31,21 @@ Follow these steps to run BookBeats on your local machine:
 npm install express node-fetch cors dotenv
 ```
 
-4. Update the server.mjs file with your own API keys:
+4. Create a .env file in the root of the project with your OpenAI, Spotify and Goodreads keys:
 
 ```
-const OPENAI_API_KEY = "<Your OpenAI API Key>";
-const GOODREADS_API_KEY = "<Your Goodreads API Key>";
-const SPOTIFY_API_KEY = "<Your Spotify API Key>";
+OPENAIAPI_KEY = <Your OpenAI API Key>
+SPOTIFY_CLIENT_ID = <Your Spotify Client ID>
+SPOTIFY_CLIENT_SECRET = <Your Spotify Client Secret>
+GOODREADS_API_KEY = <Your Goodreads API Key>
 ```
 
-5. Once everything is set up, you can run the application using the following command:
+5. Once everything is set up, you can run the application from the root of the project using the following command:
 
 ```
-node server.mjs
+node src/server/server.mjs
 ```
 
-6. Open your web browser and go to http://localhost:3000. You can also double click on the index.html file from the folder.
+6. Open your web browser and go to http://localhost:3000.
 
 7. Enjoy BookBeats! Enter your favorite book and it will create a personalized playlist for you.
-
-## **Conclusion**
-
-BookBeats is an initiative that aims to bridge the immersive worlds of literature and music 🎶📖. This is just an MVP and I will continue working on it based on user feedback to enrich the reader's experience. Whether you're a fan of science fiction 👽, romance ❤️, mystery 🕵️‍♀️, or any other genre, I hope BookBeats will enhance your reading journey, making it even more enjoyable 🥳.
