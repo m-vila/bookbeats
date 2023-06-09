@@ -9,7 +9,7 @@ const fetchData = async () => {
 
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a book name and a number of songs between 1 and 30.';
+        errorText.textContent = 'Please enter a book title and a number of songs between 1 and 30.';
         return;
     }
 
