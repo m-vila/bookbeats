@@ -1,3 +1,5 @@
+import { getSpotifyAccessToken } from './getSpotifyToken.js';
+
 const fetchData = async () => {
     const bookName = document.getElementById('bookName').value;
     const numSongs = document.getElementById('numSongs').value;
