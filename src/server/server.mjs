@@ -22,7 +22,7 @@ app.get('/callback', async (req, res) => {
     const tokens = await exchangeCodeForToken(authorizationCode);
     if (tokens && tokens.accessToken) {
         setAccessToken(tokens.accessToken, tokens.refreshToken, 3600);
-        res.redirect('http://localhost:3000/'); // Redirect to the home page after successful authentication
+        res.redirect('http://localhost:3000/');
     } else {
         res.status(500).send('Error during authorization');
     }
