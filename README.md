@@ -48,4 +48,5 @@ node src/server/server.mjs
 
 6. Open your web browser and go to http://localhost:3000.
 
+
 7. Enjoy BookBeats! Enter your favorite book and it will create a personalized playlist for you.

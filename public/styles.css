@@ -35,6 +35,7 @@ h1 {
     border: none;
 }
 button {
+    font-size: 15px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -44,9 +45,8 @@ button {
     transition: background-color 0.3s ease;
 }
 button:hover {
-    color: #000000;
     background-color: #29E7CD;
-
+    color: #000000;
 }
 button:disabled {
     color: #000000;
@@ -107,4 +107,24 @@ button:disabled {
     font-size: 15px;
     cursor: pointer;
     color: #000000;
+}
+.spotify-login-button {
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1DB954; 
+    color: #F4EBE8;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.spotify-login-button:hover {
+    background-color: #000000;
+    color: #F4EBE8;
 }
