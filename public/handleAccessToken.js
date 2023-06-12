@@ -37,11 +37,11 @@ const refreshAccessToken = async () => {
     }
 };
 
-export const getAccessToken = () => {
+export const getAccessToken = async () => {
     if (new Date().getTime() < tokenExpirationTime) {
         return accessToken;
     } else {
-        refreshAccessToken();
+        await refreshAccessToken();
         return accessToken;
     }
 };
