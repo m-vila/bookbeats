@@ -17,7 +17,7 @@ app.get('/spotify-client-id', (req, res) => {
     res.send(process.env.SPOTIFY_CLIENT_ID);
 });
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.OPENAIAPI_KEY;
 
 app.post('/fetchData', async (req, res) => {
     try {
