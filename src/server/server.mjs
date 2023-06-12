@@ -17,6 +17,17 @@ app.get('/spotify-client-id', (req, res) => {
     res.send(process.env.SPOTIFY_CLIENT_ID);
 });
 
+app.get('/callback', async (req, res) => {
+    const authorizationCode = req.query.code;
+    const tokens = await exchangeCodeForToken(authorizationCode);
+    if (tokens && tokens.accessToken) {
+        setAccessToken(tokens.accessToken, tokens.refreshToken, 3600);
+        res.redirect('http://localhost:3000/'); // Redirect to the home page after successful authentication
+    } else {
+        res.status(500).send('Error during authorization');
+    }
+});
+
 const API_KEY = process.env.OPENAIAPI_KEY;
 
 app.post('/fetchData', async (req, res) => {
