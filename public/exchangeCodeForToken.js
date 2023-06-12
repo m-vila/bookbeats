@@ -1,19 +1,11 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import crypto from 'crypto';
 
 dotenv.config();
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirectUri = 'http://localhost:3000/callback';
-
-const generateCodeChallenge = (codeVerifier) => {
-    const hash = crypto.createHash('sha256').update(codeVerifier).digest('base64');
-    return hash.replace('+', '-').replace('/', '_').replace(/=+$/, '');
-};
-
-const codeVerifier = dotenv.config().parsed.CODE_VERIFIER;
-const codeChallenge = generateCodeChallenge(codeVerifier);
 
 export const exchangeCodeForToken = async (authorizationCode) => {
     try {
@@ -27,7 +19,7 @@ export const exchangeCodeForToken = async (authorizationCode) => {
                 code: authorizationCode,
                 redirect_uri: redirectUri,
                 client_id: clientId,
-                code_verifier: codeVerifier
+                client_secret: clientSecret
             }),
         });
 
