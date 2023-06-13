@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { exchangeCodeForToken } from './auth/exchangeCodeForToken.js';
 import { setAccessToken } from './auth/handleAccessToken.js';
+import { getAccessToken } from './auth/handleAccessToken.js';
 
 const app = express();
 const __dirname = path.resolve(); 
@@ -27,6 +28,24 @@ app.get('/callback', async (req, res) => {
         res.redirect('http://localhost:3000/');
     } else {
         res.status(500).send('Error during authorization');
+    }
+});
+
+app.get('/user-profile', async (req, res) => {
+    const accessToken = await getAccessToken();
+    
+    try {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
