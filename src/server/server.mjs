@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import { exchangeCodeForToken } from './exchangeCodeForToken.js';
-import { setAccessToken } from './handleAccessToken.js';
+import { exchangeCodeForToken } from './auth/exchangeCodeForToken.js';
+import { setAccessToken } from './auth/handleAccessToken.js';
 
 const app = express();
 const __dirname = path.resolve(); 
