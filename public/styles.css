@@ -123,25 +123,38 @@ button:disabled {
     color: #000000;
 }
 
-.spotify-login-button {
+.auth-container {
     position: absolute;
-    top: 20px; 
-    right: 20px; 
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.spotify-login-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #1DB954; 
+    background-color: #1DB954;
     color: #F4EBE8;
     font-size: 16px;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 20px;
 }
 
 .spotify-login-button:hover {
     background-color: #000000;
     color: #F4EBE8;
+}
+
+.logout-link {
+    margin-right: 10px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    display: none;
+    color: #000000;
 }
 
 .logged-in {
