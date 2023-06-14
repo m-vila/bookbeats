@@ -49,6 +49,9 @@ const fetchData = async () => {
             chatGptOutput.appendChild(li);
         });
 
+        localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
+        console.log('Data saved:', chatGptOutput.innerHTML);
+
         const openWithSpotifyButton = document.getElementById('openWithSpotify');
         openWithSpotifyButton.style.display = 'block';
 
@@ -71,6 +74,21 @@ window.addEventListener('load', () => {
         event.target.parentNode.style.display = 'none';
     });
 });
+
+const restoreChatGptOutput = () => {
+    const chatGptOutput = localStorage.getItem('chatGptOutput');
+    if (chatGptOutput) {
+        const chatGptOutputElement = document.getElementById('chatGptOutput');
+        chatGptOutputElement.innerHTML = chatGptOutput;
+        chatGptOutputElement.style.display = 'block';
+        localStorage.removeItem('chatGptOutput');
+
+        const openWithSpotifyButton = document.getElementById('openWithSpotify');
+        if (chatGptOutput.trim().length > 0) {
+            openWithSpotifyButton.style.display = 'block';
+        }
+    }
+};
 
 let isLoggedIn = false;
 
@@ -97,3 +115,5 @@ const handleSpotifyButton = async () => {
         spotifyLoginButton.classList.add('flashing');
     }
 };
+
+restoreChatGptOutput();
