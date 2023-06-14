@@ -178,3 +178,13 @@ button:disabled {
     background-color: #000000;
     color: #F4EBE8;
 }
+
+@keyframes flashingEffect {
+    0% { background-color: #1DB954; color: #F4EBE8; }
+    50% { background-color: #FFD166; color: #000000; }
+    100% { background-color: #1DB954; color: #F4EBE8; } 
+}
+
+.flashing {
+    animation: flashingEffect 1s linear 5;
+}
