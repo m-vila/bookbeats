@@ -161,3 +161,20 @@ button:disabled {
     background-color: green;
     color: white;
 }
+
+#openWithSpotify {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1DB954;
+    color: #F4EBE8;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#openWithSpotify:hover {
+    background-color: #000000;
+    color: #F4EBE8;
+}

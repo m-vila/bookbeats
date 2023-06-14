@@ -49,6 +49,9 @@ const fetchData = async () => {
             output.appendChild(li);
         });
 
+        const openWithSpotifyButton = document.getElementById('openWithSpotify');
+        openWithSpotifyButton.style.display = 'block';
+
     } catch (error) {
         errorMessage.style.display = 'block';
         errorText.textContent = error.message;
