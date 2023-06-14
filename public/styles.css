@@ -117,7 +117,7 @@ button:disabled {
   .close-btn {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 10px;
     font-size: 15px;
     cursor: pointer;
     color: #000000;
