@@ -71,3 +71,25 @@ window.addEventListener('load', () => {
         event.target.parentNode.style.display = 'none';
     });
 });
+
+let isLoggedIn = false;
+
+document.addEventListener('loginStatusChanged', (event) => {
+    isLoggedIn = event.detail.isLoggedIn;
+});
+
+const handleSpotifyButton = async () => {
+    const errorMessage = document.getElementById('errorMessage');
+    const errorText = document.getElementById('errorText');
+    if (isLoggedIn) { 
+        const songElements = document.querySelectorAll('#chatGptOutput li');
+        const songs = Array.from(songElements).map(el => el.textContent);
+
+        // Create playlist on Spotify
+        //await createSpotifyPlaylist(songs);
+    } else {
+        // Show popup asking user to login
+        errorMessage.style.display = 'block';
+        errorText.textContent = 'Please log in with Spotify to create a playlist.';
+    }
+};

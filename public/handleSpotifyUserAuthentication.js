@@ -1,5 +1,3 @@
-let isLoggedIn = false;
-
 document.addEventListener("DOMContentLoaded", function () {
     fetch('/spotify-client-id')
         .then(response => response.text())
@@ -22,7 +20,7 @@ const updateLoginButton = () => {
                 const logoutLink = document.getElementById('logoutLink');
                 logoutLink.style.display = "inline";
 
-                isLoggedIn = true;
+                document.dispatchEvent(new CustomEvent('loginStatusChanged', {detail: { isLoggedIn: true }}));
             }
         })
         .catch(error => console.error('Error fetching user profile:', error));
@@ -33,9 +31,7 @@ const logoutUser = () => {
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
     setTimeout(() => {
         spotifyLogoutWindow.close();
-        if (isLoggedIn) {
-            resetButtons();
-        }
+        resetButtons();
     }, 2000);
 };
 
@@ -47,5 +43,5 @@ const resetButtons = () => {
     const logoutLink = document.getElementById('logoutLink');
     logoutLink.style.display = "none";
 
-    isLoggedIn = false;
+    document.dispatchEvent(new CustomEvent('loginStatusChanged', {detail: { isLoggedIn: false }}));
 };
