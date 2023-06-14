@@ -50,7 +50,6 @@ const fetchData = async () => {
         });
 
         localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
-        console.log('Data saved:', chatGptOutput.innerHTML);
 
         const openWithSpotifyButton = document.getElementById('openWithSpotify');
         openWithSpotifyButton.style.display = 'block';
@@ -105,7 +104,20 @@ const handleSpotifyButton = async () => {
         spotifyLoginButton.classList.remove('flashing');
 
         const songElements = document.querySelectorAll('#chatGptOutput li');
-        const songs = Array.from(songElements).map(el => el.textContent);
+        const songRegex = /"\s*([^"]+)"\s+by\s+([\w\s’.,&-]+)(?=\s|$)/g;
+        const songs = Array.from(songElements).map(el => {
+            songRegex.lastIndex = 0;
+            const songText = el.textContent;
+            const match = songRegex.exec(songText);
+            if (match) {
+                return {
+                    title: match[1].trim(),
+                    artist: match[2].trim()
+                };
+            }
+            return null;
+        }).filter(song => song !== null);
+        console.log(songs);
 
         // Create playlist on Spotify
         //await createSpotifyPlaylist(songs);
