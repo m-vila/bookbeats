@@ -2,7 +2,7 @@ const fetchData = async () => {
     const bookName = document.getElementById('bookName').value;
     const numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinner');
-    const output = document.getElementById('output');
+    const chatGptOutput = document.getElementById('chatGptOutput');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const generateButton = document.querySelector('#playlistForm button');
@@ -14,7 +14,7 @@ const fetchData = async () => {
     }
 
     spinner.style.display = 'block';
-    output.textContent = '';
+    chatGptOutput.textContent = '';
     generateButton.disabled = true;
 
     try {
@@ -41,12 +41,12 @@ const fetchData = async () => {
 
         const choicesContent = data.choices[0].message.content.trim();
         const songs = choicesContent.split('\n');
-        output.innerHTML = '';
-        output.style.display = 'block';
+        chatGptOutput.innerHTML = '';
+        chatGptOutput.style.display = 'block';
         songs.forEach(song => {
             const li = document.createElement('li');
             li.textContent = song;
-            output.appendChild(li);
+            chatGptOutput.appendChild(li);
         });
 
         const openWithSpotifyButton = document.getElementById('openWithSpotify');

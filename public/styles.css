@@ -84,7 +84,7 @@ button:disabled {
     100% { transform: rotate(360deg); }
 }
 
-#output {
+#chatGptOutput {
     display: none;
     list-style-type: none;
     max-width: 600px;
