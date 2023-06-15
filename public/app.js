@@ -56,7 +56,8 @@ const fetchData = async () => {
             li.textContent = song;
             chatGptOutput.appendChild(li);
         });
-
+        
+        localStorage.setItem('bookName', bookName);
         localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
 
         const openPlaylistWithSpotifyButton = document.getElementById('openPlaylistWithSpotify');
@@ -70,18 +71,6 @@ const fetchData = async () => {
         generateButton.disabled = false;
     }
 }
-
-document.getElementById('playlistForm').addEventListener('submit', event => {
-    event.preventDefault();
-    fetchData();
-});
-
-window.addEventListener('load', () => {
-    document.querySelector('.close-btn').addEventListener('click', event => {
-        clearTimeout(hideErrorMessageTimeout);
-        event.target.parentNode.style.display = 'none';
-    });
-});
 
 const restoreChatGptOutput = () => {
     const chatGptOutput = localStorage.getItem('chatGptOutput');
@@ -97,6 +86,28 @@ const restoreChatGptOutput = () => {
         }
     }
 };
+
+const restoreBookName = () => {
+    const bookName = localStorage.getItem('bookName');
+    if (bookName) {
+        document.getElementById('bookName').value = bookName;
+        localStorage.removeItem('bookName');
+    }
+};
+
+document.getElementById('playlistForm').addEventListener('submit', event => {
+    event.preventDefault();
+    fetchData();
+});
+
+window.addEventListener('load', () => {
+    document.querySelector('.close-btn').addEventListener('click', event => {
+        clearTimeout(hideErrorMessageTimeout);
+        event.target.parentNode.style.display = 'none';
+    });
+    restoreChatGptOutput();
+    restoreBookName();
+});
 
 let isLoggedIn = false;
 
@@ -126,10 +137,29 @@ const openWithSpotifyButton = async () => {
             }
             return null;
         }).filter(song => song !== null);
-        console.log(songs);
+        //console.log(songs);
+        
+        // Get user profile information to retrieve user id
+        const userProfileResponse = await fetch('/user-profile');
+        const userProfileData = await userProfileResponse.json();
+        const userId = userProfileData.userId;
+        const bookName = document.getElementById('bookName').value;
 
         // Create playlist on Spotify
-        //await createSpotifyPlaylist(songs);
+        const response = await fetch('http://localhost:3000/create-playlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId, bookName }),
+        });
+
+        const data = await response.json();
+        const playlistUrl = data.playlistUrl;
+
+        // Open playlist in a new tab
+        window.open(playlistUrl, '_blank');
+
     } else {
         errorMessage.style.display = 'block';
         errorText.textContent = 'Please log in with Spotify to create a playlist.';
@@ -140,4 +170,4 @@ const openWithSpotifyButton = async () => {
     }
 };
 
-restoreChatGptOutput();
+document.getElementById('openWithSpotifyButton').addEventListener('click', openWithSpotifyButton);
