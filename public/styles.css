@@ -15,15 +15,10 @@ h1 {
     text-shadow: 2px 2px 4px #9198e5;
 }
 
-#description {
+#description span {
+    display: block;
     text-align: center;
-}
-
-#inputContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    line-height: 1.5;
 }
 
 #bookName {
@@ -84,16 +79,17 @@ button:disabled {
     100% { transform: rotate(360deg); }
 }
 
-#output {
+#chatGptOutput {
     display: none;
     list-style-type: none;
     max-width: 600px;
     margin-top: 20px;
     width: 80%;
-    max-height: 150px;
+    max-height: 200px;
     overflow: auto;
     background-color: #390099;
     color: #F4EBE8;
+    line-height: 1.5;
     padding: 20px;
     border-radius: 5px;
 }
@@ -107,21 +103,21 @@ button:disabled {
     color: #000000;
     text-align: center;
     border-radius: 15px;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    right: 20px;
     top: 20px;
+    left: 20px;
     cursor: pointer;
-}
-
-.close-btn {
+  }
+  
+  .close-btn {
     position: absolute;
     top: 5px;
-    left: 20px;
+    right: 10px;
     font-size: 15px;
     cursor: pointer;
     color: #000000;
-}
+  }  
 
 .auth-container {
     position: absolute;
@@ -160,4 +156,31 @@ button:disabled {
 .logged-in {
     background-color: green;
     color: white;
+}
+
+#openPlaylistWithSpotify {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1DB954;
+    color: #F4EBE8;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#openPlaylistWithSpotify:hover {
+    background-color: #000000;
+    color: #F4EBE8;
+}
+
+@keyframes flashingEffect {
+    0% { background-color: #1DB954; color: #F4EBE8; }
+    50% { background-color: #FFD166; color: #000000; }
+    100% { background-color: #1DB954; color: #F4EBE8; } 
+}
+
+.flashing {
+    animation: flashingEffect 1s linear 5;
 }
