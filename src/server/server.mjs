@@ -18,7 +18,7 @@ dotenv.config({path: pathToEnv});
 
 const API_KEY = process.env.OPENAIAPI_KEY;
 
-app.post('/fetchData', async (req, res) => {
+app.post('/fetch-chat-gpt-response', async (req, res) => {
     try {
         const bookName = req.body.bookName;
         const numSongs = req.body.numSongs;

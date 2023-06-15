@@ -1,4 +1,4 @@
-const fetchData = async () => {
+const fetchChatGptResponse = async () => {
     const bookName = document.getElementById('bookName').value;
     const numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinner');
@@ -24,7 +24,7 @@ const fetchData = async () => {
     generateButton.disabled = true;
 
     try {
-        const response = await fetch('http://localhost:3000/fetchData', {
+        const response = await fetch('http://localhost:3000//fetch-chat-gpt-response', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const restoreBookName = () => {
 
 document.getElementById('playlistForm').addEventListener('submit', event => {
     event.preventDefault();
-    fetchData();
+    fetchChatGptResponse();
 });
 
 window.addEventListener('load', () => {
