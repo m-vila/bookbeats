@@ -24,7 +24,7 @@ const fetchChatGptResponse = async () => {
     generateButton.disabled = true;
 
     try {
-        const response = await fetch('http://localhost:3000//fetch-chat-gpt-response', {
+        const response = await fetch('http://localhost:3000/fetch-chat-gpt-response', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
