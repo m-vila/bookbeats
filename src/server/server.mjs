@@ -64,6 +64,11 @@ app.get('/callback', async (req, res) => {
     }
 });
 
+app.get('/is-logged-in', async (req, res) => {
+    const accessToken = await getAccessToken();
+    res.json({ isLoggedIn: !!accessToken });
+});
+
 app.get('/user-profile', async (req, res) => {
     const accessToken = await getAccessToken();
     
