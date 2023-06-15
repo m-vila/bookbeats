@@ -51,8 +51,8 @@ const fetchData = async () => {
 
         localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
 
-        const openWithSpotifyButton = document.getElementById('openWithSpotify');
-        openWithSpotifyButton.style.display = 'block';
+        const openPlaylistWithSpotifyButton = document.getElementById('openPlaylistWithSpotify');
+        openPlaylistWithSpotifyButton.style.display = 'block';
 
     } catch (error) {
         errorMessage.style.display = 'block';
@@ -82,9 +82,9 @@ const restoreChatGptOutput = () => {
         chatGptOutputElement.style.display = 'block';
         localStorage.removeItem('chatGptOutput');
 
-        const openWithSpotifyButton = document.getElementById('openWithSpotify');
+        const openPlaylistWithSpotifyButton = document.getElementById('openPlaylistWithSpotify');
         if (chatGptOutput.trim().length > 0) {
-            openWithSpotifyButton.style.display = 'block';
+            openPlaylistWithSpotifyButton.style.display = 'block';
         }
     }
 };
@@ -95,7 +95,7 @@ document.addEventListener('loginStatusChanged', (event) => {
     isLoggedIn = event.detail.isLoggedIn;
 });
 
-const handleSpotifyButton = async () => {
+const openWithSpotifyButton = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const spotifyLoginButton = document.getElementById('spotifyLoginButton');
