@@ -10,6 +10,10 @@ const fetchData = async () => {
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
         errorText.textContent = 'Please enter a book title and a number of songs between 1 and 30.';
+        hideErrorMessageTimeout = setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 6000);
+        
         return;
     }
 
@@ -36,6 +40,10 @@ const fetchData = async () => {
             errorMessage.style.display = 'block';
             errorText.textContent = 'An error occurred. Please check the API connection.';
             spinner.style.display = 'none';
+            hideErrorMessageTimeout = setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 6000);
+            
             return;
         }
 
@@ -70,6 +78,7 @@ document.getElementById('playlistForm').addEventListener('submit', event => {
 
 window.addEventListener('load', () => {
     document.querySelector('.close-btn').addEventListener('click', event => {
+        clearTimeout(hideErrorMessageTimeout);
         event.target.parentNode.style.display = 'none';
     });
 });
@@ -125,6 +134,9 @@ const openWithSpotifyButton = async () => {
         errorMessage.style.display = 'block';
         errorText.textContent = 'Please log in with Spotify to create a playlist.';
         spotifyLoginButton.classList.add('flashing');
+        hideErrorMessageTimeout = setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 5000);
     }
 };
 
