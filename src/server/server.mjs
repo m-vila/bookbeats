@@ -109,6 +109,60 @@ app.post('/create-playlist', async (req, res) => {
     }
 });
 
+const searchForSong = async (songTitle, songArtist, accessToken) => {
+    try {
+        const query = encodeURIComponent(`${songTitle} artist:${songArtist}`);
+        const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=1`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        const data = await response.json();
+        const tracks = data.tracks.items;
+        if (tracks.length > 0) {
+            return tracks[0].uri;
+        }
+    } catch (error) {
+        console.error('Error searching for song:', error);
+    }
+    return null;
+};
+
+app.post('/search-song', async (req, res) => {
+    const songTitle = req.body.songTitle;
+    const songArtist = req.body.songArtist;
+    const accessToken = await getAccessToken();
+
+    const uri = await searchForSong(songTitle, songArtist, accessToken);
+
+    res.json({ uri });
+});
+
+app.post('/add-songs-to-playlist', async (req, res) => {
+    const playlistId = req.body.playlistId;
+    const songUris = req.body.songUris;
+    const accessToken = await getAccessToken();
+
+    try {
+        await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                uris: songUris
+            })
+        });
+
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error adding songs to playlist:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
