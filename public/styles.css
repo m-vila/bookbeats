@@ -15,16 +15,10 @@ h1 {
     text-shadow: 2px 2px 4px #9198e5;
 }
 
-#description {
+#description span {
+    display: block;
     text-align: center;
     line-height: 1.5;
-}
-
-#inputContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
 }
 
 #bookName {
@@ -165,7 +159,7 @@ button:disabled {
 }
 
 #openPlaylistWithSpotify {
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -176,7 +170,7 @@ button:disabled {
     transition: background-color 0.3s ease;
 }
 
-#openWithSpotify:hover {
+#openPlaylistWithSpotify:hover {
     background-color: #000000;
     color: #F4EBE8;
 }

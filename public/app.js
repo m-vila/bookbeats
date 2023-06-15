@@ -6,6 +6,8 @@ const fetchData = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const generateButton = document.querySelector('#playlistForm button');
+    
+    let hideErrorMessageTimeout;
 
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
@@ -170,4 +172,4 @@ const openWithSpotifyButton = async () => {
     }
 };
 
-document.getElementById('openWithSpotifyButton').addEventListener('click', openWithSpotifyButton);
+document.getElementById('openPlaylistWithSpotify').addEventListener('click', openWithSpotifyButton);

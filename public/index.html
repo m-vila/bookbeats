@@ -14,8 +14,10 @@
 
     <h1>BookBeats</h1>
     <h3>Get ready to rock with BookBeats 🎸</h3>
-    <p id="description">Enter the title and author of your favorite book, the number of songs to generate </br> 
-        and BookBeats will create a playlist inspired by the book's theme</p>
+    <div id="description">
+        <span>Enter the title and author of your favorite book, the number of songs to generate</span>
+        <span>and BookBeats will create a playlist inspired by the book's theme</span>
+    </div>
     <h4>🎵 Start your musical adventure now 🎵</h4>
     <form id="playlistForm">
         <input id="bookName" type="text" placeholder="E.g. The Martian by Andy Weir...">
@@ -23,7 +25,7 @@
         <button type="submit">Generate Playlist</button>
         <div id="spinner"></div>
     </form>
-    <p id="chatGptOutput"></p>
+    <div id="chatGptOutput"></div>
     <button id="openPlaylistWithSpotify" onclick="openWithSpotifyButton()" style="display: none;">Open playlist with Spotify</button>
     <div id="errorMessage" class="popup">
         <span class="close-btn">x</span>
