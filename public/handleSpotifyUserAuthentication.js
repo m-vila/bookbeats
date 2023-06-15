@@ -12,9 +12,9 @@ const updateLoginButton = () => {
     fetch('/user-profile')
         .then(response => response.json())
         .then(data => {
-            if (data.display_name) {
+            if (data.profile && data.profile.display_name) {
                 const spotifyLoginButton = document.getElementById('spotifyLoginButton');
-                spotifyLoginButton.textContent = `Logged in as ${data.display_name}`;
+                spotifyLoginButton.textContent = `Logged in as ${data.profile.display_name}`;
                 spotifyLoginButton.classList.add('logged-in');
 
                 const logoutLink = document.getElementById('logoutLink');

@@ -42,7 +42,7 @@ app.get('/user-profile', async (req, res) => {
         });
 
         const data = await response.json();
-        res.json(data);
+        res.json({ profile: data, userId: data.id });
     } catch (error) {
         console.error('Error fetching user profile:', error);
         res.status(500).json({ error: 'Internal Server Error' });
