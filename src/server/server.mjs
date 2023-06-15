@@ -16,6 +16,39 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config({path: pathToEnv});
 
+const API_KEY = process.env.OPENAIAPI_KEY;
+
+app.post('/fetchData', async (req, res) => {
+    try {
+        const bookName = req.body.bookName;
+        const numSongs = req.body.numSongs;
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{
+                    role: "system",
+                    content: "You are a helpful assistant."
+                }, {
+                    role: "user",
+                    content: `Suggest a playlist of ${numSongs} songs for the book ${bookName}. Show the list of songs only.`
+                }],
+                max_tokens: 500,
+                temperature: 0.5
+            })
+        });
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/spotify-client-id', (req, res) => {
     res.send(process.env.SPOTIFY_CLIENT_ID);
 });
@@ -49,35 +82,29 @@ app.get('/user-profile', async (req, res) => {
     }
 });
 
-const API_KEY = process.env.OPENAIAPI_KEY;
-
-app.post('/fetchData', async (req, res) => {
+app.post('/create-playlist', async (req, res) => {
+    const userId = req.body.userId;
+    const accessToken = await getAccessToken();
+    const bookName = req.body.bookName;
+    
     try {
-        const bookName = req.body.bookName;
-        const numSongs = req.body.numSongs;
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
+        const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            method: 'POST',
             headers: {
-                Authorization: `Bearer ${API_KEY}`,
-                "Content-Type": "application/json"
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{
-                    role: "system",
-                    content: "You are a helpful assistant."
-                }, {
-                    role: "user",
-                    content: `Suggest a playlist of ${numSongs} songs for the book ${bookName}. Show the list of songs only.`
-                }],
-                max_tokens: 500,
-                temperature: 0.5
+                name: `${bookName} Playlist`,
+                description: 'A playlist created by BookBeats, inspired by your favorite book.',
+                public: false
             })
         });
+
         const data = await response.json();
-        res.json(data);
+        res.json({ playlistId: data.id, playlistUrl: data.external_urls.spotify });
     } catch (error) {
-        console.error('Server error:', error);
+        console.error('Error creating playlist:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
