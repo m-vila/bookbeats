@@ -64,7 +64,7 @@ button:disabled {
     gap: 10px;
 }
 
-#spinner {
+#spinnerGeneratePlaylist {
     display: none;
     border: 8px solid #F4EBE8;
     border-top: 8px solid #29E7CD;
@@ -158,6 +158,13 @@ button:disabled {
     color: white;
 }
 
+#spotifyPlaylistButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 #openPlaylistWithSpotify {
     margin-top: 20px;
     padding: 10px 20px;
@@ -173,6 +180,17 @@ button:disabled {
 #openPlaylistWithSpotify:hover {
     background-color: #000000;
     color: #F4EBE8;
+}
+
+#spinnerSpotifyPlaylist {
+    display: none;
+    border: 6px solid #F4EBE8; /* You can adjust the size by changing the border width */
+    border-top: 6px solid #e66465;
+    border-radius: 50%;
+    width: 20px; /* Adjust spinner size */
+    height: 20px;
+    animation: spin 2s linear infinite;
+    margin-top: 15px;
 }
 
 @keyframes flashingEffect {
