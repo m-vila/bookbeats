@@ -182,6 +182,12 @@ h1 {
     color: #F4EBE8;
 }
 
+#openPlaylistWithSpotify:disabled {
+    color: #000000;
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
 #spinnerSpotifyPlaylist {
     display: none;
     border: 6px solid #F4EBE8; /* You can adjust the size by changing the border width */

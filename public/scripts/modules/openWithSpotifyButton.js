@@ -2,7 +2,10 @@ export const openWithSpotifyButton = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const spotifyLoginButton = document.getElementById('spotifyLoginButton');
+    const openPlaylistButton = document.getElementById('openPlaylistWithSpotify');
     const spinner = document.getElementById('spinnerSpotifyPlaylist');
+
+    openPlaylistButton.disabled = false;
 
     // Check if the user is logged in
     const loginStatusResponse = await fetch('/is-logged-in');
@@ -92,6 +95,9 @@ export const openWithSpotifyButton = async () => {
 
         // Open playlist in a new tab
         window.open(playlistUrl, '_blank');
+
+        // Disable the button to prevent multiple playlist creations
+        openPlaylistButton.disabled = true;
 
     } else {
         spinner.style.display = 'none';
