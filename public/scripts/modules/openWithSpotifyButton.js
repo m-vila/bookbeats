@@ -38,9 +38,6 @@ export const openWithSpotifyButton = async () => {
             return null;
         }).filter(song => song !== null);
 
-        //TODO: Delete after tests
-        console.log(songs);
-
         // Search for songs and collect their URIs
         const songUris = [];
         const notFoundSongs = [];
@@ -60,9 +57,6 @@ export const openWithSpotifyButton = async () => {
                 notFoundSongs.push(`${song.title} by ${song.artist}`);
             }
         }
-
-        //TODO: Delete after tests
-        console.log(songUris);
 
         if (notFoundSongs.length > 0) {
             errorMessage.style.display = 'block';
@@ -100,10 +94,7 @@ export const openWithSpotifyButton = async () => {
 
         spinner.style.display = 'none';
 
-        // Open playlist in a new tab
         window.open(playlistUrl, '_blank');
-
-        // Disable the button to prevent multiple playlist creations
         openPlaylistButton.disabled = true;
 
     } else {
