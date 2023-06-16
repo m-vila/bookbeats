@@ -19,7 +19,7 @@ export const openWithSpotifyButton = async () => {
 
         //Obtain song title and author from chatGpt output
         const songElements = document.querySelectorAll('#chatGptOutput li');
-        const songRegex = /"\s*([^"]+)"\s+by\s+([\w\s’.,&-]+)(?=\s|$)/g;
+        const songRegex = /"\s*([^"]+)"\s+by\s+([^\d]+)/g;
         const songs = Array.from(songElements).map(el => {
             songRegex.lastIndex = 0;
             const songText = el.textContent;
