@@ -6,6 +6,9 @@ export const fetchChatGptResponse = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const generateButton = document.querySelector('#generatePlaylist');
+    const openPlaylistButton = document.getElementById('openPlaylistWithSpotify');
+
+    openPlaylistButton.disabled = false;
     
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';
