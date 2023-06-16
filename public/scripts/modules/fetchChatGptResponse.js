@@ -1,7 +1,7 @@
 export const fetchChatGptResponse = async () => {
     const bookName = document.getElementById('bookName').value;
     const numSongs = document.getElementById('numSongs').value;
-    const spinner = document.getElementById('spinner');
+    const spinner = document.getElementById('spinnerGeneratePlaylist');
     const chatGptOutput = document.getElementById('chatGptOutput');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
