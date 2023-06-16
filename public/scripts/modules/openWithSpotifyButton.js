@@ -66,8 +66,15 @@ export const openWithSpotifyButton = async () => {
 
         if (notFoundSongs.length > 0) {
             errorMessage.style.display = 'block';
-            errorText.innerHTML = 'The following songs were not found on Spotify and could not be added to the playlist:<br>' + notFoundSongs.join(', ').replace(/, /g, '<br>');
-        }        
+            
+            let notFoundList = '<ol>';
+            for (let notFoundSong of notFoundSongs) {
+                notFoundList += `<li>${notFoundSong}</li>`;
+            }
+            notFoundList += '</ol>';
+            
+            errorText.innerHTML = 'The following songs were not found on Spotify and could not be added to the playlist:<br>' + notFoundList;
+        }               
 
         // Create playlist on Spotify
         const createPlaylistResponse = await fetch('http://localhost:3000/create-playlist', {
