@@ -33,10 +33,12 @@ export const openWithSpotifyButton = async () => {
             return null;
         }).filter(song => song !== null);
 
+        //TODO: Delete after tests
         console.log(songs);
 
         // Search for songs and collect their URIs
         const songUris = [];
+        const notFoundSongs = [];
         for (const song of songs) {
             const response = await fetch('http://localhost:3000/search-song', {
                 method: 'POST',
@@ -49,10 +51,18 @@ export const openWithSpotifyButton = async () => {
             const data = await response.json();
             if (data.uri) {
                 songUris.push(data.uri);
+            }  else {
+                notFoundSongs.push(`${song.title} by ${song.artist}`);
             }
         }
 
+        //TODO: Delete after tests
         console.log(songUris);
+
+        if (notFoundSongs.length > 0) {
+            errorMessage.style.display = 'block';
+            errorText.innerHTML = 'The following songs were not found on Spotify and could not be added to the playlist:<br>' + notFoundSongs.join(', ').replace(/, /g, '<br>');
+        }        
 
         // Create playlist on Spotify
         const response = await fetch('http://localhost:3000/create-playlist', {
