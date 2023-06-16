@@ -5,7 +5,7 @@ export const fetchChatGptResponse = async () => {
     const chatGptOutput = document.getElementById('chatGptOutput');
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
-    const generateButton = document.querySelector('#playlistForm button');
+    const generateButton = document.querySelector('#generatePlaylist');
     
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
         errorMessage.style.display = 'block';

@@ -35,7 +35,7 @@ h1 {
     border: none;
 }
 
-button {
+#generatePlaylist {
     font-size: 15px;
     padding: 10px 20px;
     border: none;
@@ -46,12 +46,12 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+#generatePlaylist:hover {
     background-color: #29E7CD;
     color: #000000;
 }
 
-button:disabled {
+#generatePlaylist:disabled {
     color: #000000;
     background-color: #aaa;
     cursor: not-allowed;
