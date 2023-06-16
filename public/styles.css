@@ -115,6 +115,7 @@ h1 {
     top: 5px;
     right: 10px;
     font-size: 15px;
+    padding: 5px 10px 30px 30px;
     cursor: pointer;
     color: #000000;
   }  
