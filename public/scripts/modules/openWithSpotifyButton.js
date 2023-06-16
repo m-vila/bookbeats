@@ -2,14 +2,16 @@ export const openWithSpotifyButton = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
     const spotifyLoginButton = document.getElementById('spotifyLoginButton');
+    const spinner = document.getElementById('spinnerSpotifyPlaylist');
 
     // Check if the user is logged in
-    const response = await fetch('/is-logged-in');
-    const data = await response.json();
-    const isLoggedIn = data.isLoggedIn;
+    const loginStatusResponse = await fetch('/is-logged-in');
+    const loginStatusData = await loginStatusResponse.json();
+    const isLoggedIn = loginStatusData.isLoggedIn;
     
     if (isLoggedIn) { 
         spotifyLoginButton.classList.remove('flashing');
+        spinner.style.display = 'block';
 
         // Get user profile information to retrieve user id
         const userProfileResponse = await fetch('/user-profile');
@@ -65,7 +67,7 @@ export const openWithSpotifyButton = async () => {
         }        
 
         // Create playlist on Spotify
-        const response = await fetch('http://localhost:3000/create-playlist', {
+        const createPlaylistResponse = await fetch('http://localhost:3000/create-playlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,9 +75,9 @@ export const openWithSpotifyButton = async () => {
             body: JSON.stringify({ userId, bookName }),
         });
 
-        const data = await response.json();
-        const playlistUrl = data.playlistUrl;
-        const playlistId = data.playlistId;
+        const createPlaylistData = await createPlaylistResponse.json();
+        const playlistUrl = createPlaylistData.playlistUrl;
+        const playlistId = createPlaylistData.playlistId;
 
         // Add songs to the playlist
         await fetch('http://localhost:3000/add-songs-to-playlist', {
@@ -86,10 +88,13 @@ export const openWithSpotifyButton = async () => {
             body: JSON.stringify({ playlistId, songUris }),
         });
 
+        spinner.style.display = 'none';
+
         // Open playlist in a new tab
         window.open(playlistUrl, '_blank');
 
     } else {
+        spinner.style.display = 'none';
         errorMessage.style.display = 'block';
         errorText.textContent = 'Please log in with Spotify to create a playlist.';
         spotifyLoginButton.classList.add('flashing');
