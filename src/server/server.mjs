@@ -18,7 +18,7 @@ dotenv.config({path: pathToEnv});
 
 const API_KEY = process.env.OPENAIAPI_KEY;
 
-app.post('/fetchData', async (req, res) => {
+app.post('/fetch-chat-gpt-response', async (req, res) => {
     try {
         const bookName = req.body.bookName;
         const numSongs = req.body.numSongs;
@@ -62,6 +62,11 @@ app.get('/callback', async (req, res) => {
     } else {
         res.status(500).send('Error during authorization');
     }
+});
+
+app.get('/is-logged-in', async (req, res) => {
+    const accessToken = await getAccessToken();
+    res.json({ isLoggedIn: !!accessToken });
 });
 
 app.get('/user-profile', async (req, res) => {

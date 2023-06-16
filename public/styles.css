@@ -35,7 +35,7 @@ h1 {
     border: none;
 }
 
-button {
+#generatePlaylist {
     font-size: 15px;
     padding: 10px 20px;
     border: none;
@@ -46,12 +46,12 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+#generatePlaylist:hover {
     background-color: #29E7CD;
     color: #000000;
 }
 
-button:disabled {
+#generatePlaylist:disabled {
     color: #000000;
     background-color: #aaa;
     cursor: not-allowed;
@@ -64,7 +64,7 @@ button:disabled {
     gap: 10px;
 }
 
-#spinner {
+#spinnerGeneratePlaylist {
     display: none;
     border: 8px solid #F4EBE8;
     border-top: 8px solid #29E7CD;
@@ -101,7 +101,6 @@ button:disabled {
     padding: 20px;
     background-color: #FFD166;
     color: #000000;
-    text-align: center;
     border-radius: 15px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -115,6 +114,7 @@ button:disabled {
     top: 5px;
     right: 10px;
     font-size: 15px;
+    padding: 5px 10px 30px 30px;
     cursor: pointer;
     color: #000000;
   }  
@@ -158,6 +158,13 @@ button:disabled {
     color: white;
 }
 
+#spotifyPlaylistButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 #openPlaylistWithSpotify {
     margin-top: 20px;
     padding: 10px 20px;
@@ -173,6 +180,23 @@ button:disabled {
 #openPlaylistWithSpotify:hover {
     background-color: #000000;
     color: #F4EBE8;
+}
+
+#openPlaylistWithSpotify:disabled {
+    color: #000000;
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+#spinnerSpotifyPlaylist {
+    display: none;
+    border: 6px solid #F4EBE8;
+    border-top: 6px solid #e66465;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+    margin-top: 17px;
 }
 
 @keyframes flashingEffect {
