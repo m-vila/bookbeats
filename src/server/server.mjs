@@ -17,6 +17,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config({path: pathToEnv});
 
 const API_KEY = process.env.OPENAI_API_KEY;
+const GOOGLEBOOKS_API_KEY = process.env.GOOGLEBOOKS_API_KEY;
+
+app.get('/autocomplete', async (req, res) => {
+    try {
+        const query = req.query.q;
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${GOOGLEBOOKS_API_KEY}`);
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error fetching data from Google Books API:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 app.post('/fetch-chat-gpt-response', async (req, res) => {
     try {
