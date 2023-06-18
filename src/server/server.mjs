@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config({path: pathToEnv});
 
-const API_KEY = process.env.OPENAIAPI_KEY;
+const API_KEY = process.env.OPENAI_API_KEY;
 
 app.post('/fetch-chat-gpt-response', async (req, res) => {
     try {
