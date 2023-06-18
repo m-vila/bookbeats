@@ -24,7 +24,11 @@ app.get('/autocomplete', async (req, res) => {
         const query = req.query.q;
         const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${GOOGLEBOOKS_API_KEY}`);
         const data = await response.json();
-        res.json(data);
+        const items = data.items.map(item => ({
+            title: item.volumeInfo.title,
+            authors: item.volumeInfo.authors
+        }));
+        res.json({items});
     } catch (error) {
         console.error('Error fetching data from Google Books API:', error);
         res.status(500).json({ error: 'Internal Server Error' });
