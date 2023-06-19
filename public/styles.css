@@ -28,6 +28,32 @@ h1 {
     border: none;
 }
 
+#autocomplete-list {
+    position: absolute; 
+    top: 40px; 
+    left: 0; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1; 
+    width: 300px; 
+    display: none;
+}
+
+#autocomplete-list li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#autocomplete-list li:hover {
+    background-color: #f0f0f0;
+}
+
 #numSongs {
     width: 50px;
     padding: 10px;
@@ -58,6 +84,7 @@ h1 {
 }
 
 #playlistForm {
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
