@@ -26,7 +26,8 @@ app.get('/autocomplete', async (req, res) => {
         const data = await response.json();
         const items = data.items.map(item => ({
             title: item.volumeInfo.title,
-            authors: item.volumeInfo.authors
+            authors: item.volumeInfo.authors,
+            thumbnail: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.smallThumbnail : null
         }));
         res.json({items});
     } catch (error) {
