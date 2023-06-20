@@ -52,6 +52,7 @@ function displayAutoCompleteSuggestions(items) {
         li.addEventListener('click', () => {
             bookNameInput.value = `${title} by ${authors}`;
             autoCompleteList.innerHTML = '';
+            document.getElementById("autocomplete-list").style.display = "none";
         });
 
         autoCompleteList.appendChild(li);
