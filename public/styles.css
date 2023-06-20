@@ -22,7 +22,7 @@ h1 {
 }
 
 #bookName {
-    width: 300px;
+    width: 400px;
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -39,7 +39,7 @@ h1 {
     max-height: 150px;
     overflow-y: auto;
     z-index: 1; 
-    width: 300px; 
+    width: 418px; 
     display: none;
 }
 
@@ -48,10 +48,13 @@ h1 {
     cursor: pointer;
     display: flex;
     align-items: center;
+    background-color: #F4EBE8;
+    color: #000000;
 }
 
 #autocomplete-list li:hover {
-    background-color: #f0f0f0;
+    background-color: #29E7CD;
+    color: #000000;
 }
 
 #numSongs {
