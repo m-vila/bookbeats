@@ -136,7 +136,7 @@ h1 {
     z-index: 1000;
     top: 20px;
     left: 20px;
-    cursor: pointer;
+    cursor: default;
   }
   
   .close-btn {

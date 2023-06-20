@@ -20,6 +20,14 @@ export function initAutocomplete() {
             document.getElementById("autocomplete-list").style.display = "none";
         }
     });
+
+    document.addEventListener('click', event => {
+        const target = event.target;
+        if (!autoCompleteList.contains(target) && target !== bookNameInput) {
+            autoCompleteList.innerHTML = '';
+            document.getElementById("autocomplete-list").style.display = "none";
+        }
+    });
 }
 
 function displayAutoCompleteSuggestions(items, bookNameInput, autoCompleteList) {
