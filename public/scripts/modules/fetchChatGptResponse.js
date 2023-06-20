@@ -5,8 +5,6 @@ export const fetchChatGptResponse = async () => {
     const numSongs = document.getElementById('numSongs').value;
     const spinner = document.getElementById('spinnerGeneratePlaylist');
     const chatGptOutput = document.getElementById('chatGptOutput');
-    const errorMessage = document.getElementById('errorMessage');
-    const errorText = document.getElementById('errorText');
     const generateButton = document.querySelector('#generatePlaylist');
     const openPlaylistButton = document.getElementById('openPlaylistWithSpotify');
 
