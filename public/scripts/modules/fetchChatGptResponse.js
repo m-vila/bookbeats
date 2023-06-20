@@ -1,3 +1,5 @@
+import { displayError } from './displayError.js';
+
 export const fetchChatGptResponse = async () => {
     const bookName = document.getElementById('bookName').value;
     const numSongs = document.getElementById('numSongs').value;
@@ -11,8 +13,7 @@ export const fetchChatGptResponse = async () => {
     openPlaylistButton.disabled = false;
     
     if (!bookName.trim() || isNaN(numSongs) || numSongs <= 0 || numSongs > 30 || !Number.isInteger(parseFloat(numSongs))) {
-        errorMessage.style.display = 'block';
-        errorText.textContent = 'Please enter a book title and a number of songs between 1 and 30.';
+        displayError('Please enter a book title and a number of songs between 1 and 30.');
         return;
     }
 
@@ -38,9 +39,7 @@ export const fetchChatGptResponse = async () => {
         const data = await response.json();
 
         if (data.error) {
-            errorMessage.style.display = 'block';
-            errorText.textContent = 'An error occurred. Please check the API connection.';
-            spinner.style.display = 'none';
+            displayError('An error occurred. Please check the API connection.');
             return;
         }
 
@@ -56,16 +55,14 @@ export const fetchChatGptResponse = async () => {
 
         chatGptOutput.style.display = 'block';
         openPlaylistButton.style.display = 'block';
-        
+
         localStorage.setItem('bookName', bookName);
         localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
 
-        const openPlaylistWithSpotifyButton = document.getElementById('openPlaylistWithSpotify');
-        openPlaylistWithSpotifyButton.style.display = 'block';
+        openPlaylistButton.style.display = 'block';
 
     } catch (error) {
-        errorMessage.style.display = 'block';
-        errorText.textContent = error.message;
+        displayError(error.message);
     } finally {
         spinner.style.display = 'none';
         generateButton.disabled = false;
