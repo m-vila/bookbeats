@@ -17,6 +17,8 @@ export const fetchChatGptResponse = async () => {
     }
 
     spinner.style.display = 'block';
+    chatGptOutput.style.display = 'none';
+    openPlaylistButton.style.display = 'none';
     chatGptOutput.textContent = '';
     generateButton.disabled = true;
 
@@ -51,6 +53,9 @@ export const fetchChatGptResponse = async () => {
             li.textContent = song;
             chatGptOutput.appendChild(li);
         });
+
+        chatGptOutput.style.display = 'block';
+        openPlaylistButton.style.display = 'block';
         
         localStorage.setItem('bookName', bookName);
         localStorage.setItem('chatGptOutput', chatGptOutput.innerHTML);
