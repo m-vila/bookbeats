@@ -6,8 +6,11 @@ dotenv.config();
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
+// Refresh the access token
 export const refreshAccessToken = async (refreshToken) => {
   try {
+
+    // Make a POST request to refresh the access token
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
