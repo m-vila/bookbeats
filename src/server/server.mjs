@@ -14,16 +14,21 @@ const pathToEnv = path.resolve(__dirname, '.env');
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Load environment variables from .env file
 dotenv.config({path: pathToEnv});
 
 const API_KEY = process.env.OPENAI_API_KEY;
 const GOOGLEBOOKS_API_KEY = process.env.GOOGLEBOOKS_API_KEY;
 
+// Fetch data from the Google Books API for the autocomplete feature
 app.get('/autocomplete', async (req, res) => {
     try {
         const query = req.query.q;
         const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${GOOGLEBOOKS_API_KEY}`);
         const data = await response.json();
+
+        // Extract book title, author and thumbnail from the API response
         const items = data.items.map(item => ({
             title: item.volumeInfo.title,
             authors: item.volumeInfo.authors,
@@ -36,6 +41,7 @@ app.get('/autocomplete', async (req, res) => {
     }
 });
 
+// Generate playlist using OpenAI GPT-3 model
 app.post('/fetch-chat-gpt-response', async (req, res) => {
     try {
         const bookName = req.body.bookName;
@@ -67,14 +73,17 @@ app.post('/fetch-chat-gpt-response', async (req, res) => {
     }
 });
 
+// Get the Spotify client ID
 app.get('/spotify-client-id', (req, res) => {
     res.send(process.env.SPOTIFY_CLIENT_ID);
 });
 
+// Handle the callback from Spotify authentication
 app.get('/callback', async (req, res) => {
     const authorizationCode = req.query.code;
     const tokens = await exchangeCodeForToken(authorizationCode);
     if (tokens && tokens.accessToken) {
+        // Set the access token and refresh token in the server
         setAccessToken(tokens.accessToken, tokens.refreshToken, 3600);
         res.redirect('http://localhost:3000/');
     } else {
@@ -82,11 +91,7 @@ app.get('/callback', async (req, res) => {
     }
 });
 
-app.get('/is-logged-in', async (req, res) => {
-    const accessToken = await getAccessToken();
-    res.json({ isLoggedIn: !!accessToken });
-});
-
+// Get the user profile from Spotify
 app.get('/user-profile', async (req, res) => {
     const accessToken = await getAccessToken();
     
@@ -105,6 +110,7 @@ app.get('/user-profile', async (req, res) => {
     }
 });
 
+// Create a playlist on Spotify
 app.post('/create-playlist', async (req, res) => {
     const userId = req.body.userId;
     const accessToken = await getAccessToken();
@@ -132,6 +138,7 @@ app.post('/create-playlist', async (req, res) => {
     }
 });
 
+// Search for a song on Spotify
 const searchForSong = async (songTitle, songArtist, accessToken) => {
     try {
         const query = encodeURIComponent(`${songTitle} artist:${songArtist}`);
@@ -152,6 +159,7 @@ const searchForSong = async (songTitle, songArtist, accessToken) => {
     return null;
 };
 
+// Search for a song and return its URI
 app.post('/search-song', async (req, res) => {
     const songTitle = req.body.songTitle;
     const songArtist = req.body.songArtist;
@@ -162,6 +170,7 @@ app.post('/search-song', async (req, res) => {
     res.json({ uri });
 });
 
+// Add songs to a playlist on Spotify
 app.post('/add-songs-to-playlist', async (req, res) => {
     const playlistId = req.body.playlistId;
     const songUris = req.body.songUris;
@@ -186,6 +195,13 @@ app.post('/add-songs-to-playlist', async (req, res) => {
     }
 });
 
+// Check if the user is logged in
+app.get('/is-logged-in', async (req, res) => {
+    const accessToken = await getAccessToken();
+    res.json({ isLoggedIn: !!accessToken });
+});
+
+// Start the server
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
