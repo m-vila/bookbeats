@@ -45,13 +45,5 @@ const resetButtons = () => {
     const logoutLink = document.getElementById('logoutLink');
     logoutLink.style.display = "none";
 
-    fetch('/logout')
-        .then(response => {
-            if (response.ok) {
-                document.dispatchEvent(new CustomEvent('loginStatusChanged', { detail: { isLoggedIn: false } }));
-            } else {
-                console.error('Error logging out:', response.status);
-            }
-        })
-        .catch(error => console.error('Error logging out:', error));
+    document.dispatchEvent(new CustomEvent('loginStatusChanged', {detail: { isLoggedIn: false }}));
 };
