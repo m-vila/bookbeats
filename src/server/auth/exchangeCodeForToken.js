@@ -7,6 +7,7 @@ const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirectUri = 'http://localhost:3000/callback';
 
+//Exchanges the authorization code for an access token and refresh token
 export const exchangeCodeForToken = async (authorizationCode) => {
     try {
         const response = await fetch('https://accounts.spotify.com/api/token', {
