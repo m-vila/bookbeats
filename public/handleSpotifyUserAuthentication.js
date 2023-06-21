@@ -1,3 +1,5 @@
+let isLoggedIn = false;
+
 document.addEventListener("DOMContentLoaded", function () {
     fetch('/spotify-client-id')
         .then(response => response.text())
