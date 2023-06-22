@@ -3,6 +3,7 @@ import { openWithSpotifyButton } from './modules/openWithSpotifyButton.js';
 import { restoreChatGptOutput } from './modules/restoreChatGptOutput.js';
 import { restoreBookName } from './modules/restoreUserInput.js';
 import { initAutocomplete } from './modules/displayAutoCompleteSuggestions.js';
+import { logoutUser } from './modules/handleSpotifyUserAuthentication.js';
 
 document.getElementById('playlistForm').addEventListener('submit', event => {
     event.preventDefault();
@@ -18,8 +19,6 @@ window.addEventListener('load', () => {
     restoreBookName();
 });
 
-document.addEventListener('loginStatusChanged', (event) => {
-    isLoggedIn = event.detail.isLoggedIn;
-});
 
 document.getElementById('openPlaylistWithSpotify').addEventListener('click', openWithSpotifyButton);
+document.getElementById('logoutLink').addEventListener('click', logoutUser);

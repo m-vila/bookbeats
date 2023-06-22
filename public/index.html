@@ -12,7 +12,7 @@
 
 <body>
     <div id="authContainer" class="auth-container">
-        <a id="logoutLink" class="logout-link" href="javascript:logoutUser()">Logout</a>
+        <a id="logoutLink" class="logout-link" href="#">Logout</a>
         <a id="spotifyLoginButton" class="spotify-login-button" href="#">Log in with Spotify</a>
     </div>
 
@@ -39,7 +39,7 @@
         <p id="errorText"></p>
     </div>    
     <script type="module" src="/scripts/app.js"></script>
-    <script src="handleSpotifyUserAuthentication.js"></script>
+    <script type="module" src="/scripts/modules/handleSpotifyUserAuthentication.js"></script>
 </body>
 
 </html>
