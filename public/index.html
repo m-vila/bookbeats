@@ -2,13 +2,17 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <title>BookBeats</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
     <div id="authContainer" class="auth-container">
-        <a id="logoutLink" class="logout-link" href="javascript:logoutUser()">Logout</a>
+        <a id="logoutLink" class="logout-link" href="#">Logout</a>
         <a id="spotifyLoginButton" class="spotify-login-button" href="#">Log in with Spotify</a>
     </div>
 
@@ -35,7 +39,7 @@
         <p id="errorText"></p>
     </div>    
     <script type="module" src="/scripts/app.js"></script>
-    <script src="handleSpotifyUserAuthentication.js"></script>
+    <script type="module" src="/scripts/modules/handleSpotifyUserAuthentication.js"></script>
 </body>
 
 </html>

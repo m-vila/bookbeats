@@ -7,7 +7,7 @@ export const openWithSpotifyButton = async () => {
 
     openPlaylistButton.disabled = false;
 
-    // Check if the user is logged in
+    // Checks if the user is logged in with Spotify
     const loginStatusResponse = await fetch('/is-logged-in');
     const loginStatusData = await loginStatusResponse.json();
     const isLoggedIn = loginStatusData.isLoggedIn;
@@ -16,13 +16,13 @@ export const openWithSpotifyButton = async () => {
         spotifyLoginButton.classList.remove('flashing');
         spinner.style.display = 'block';
 
-        // Get user profile information to retrieve user id
+        // Collects necessary data such as user profile, book name, and song information
         const userProfileResponse = await fetch('/user-profile');
         const userProfileData = await userProfileResponse.json();
         const userId = userProfileData.userId;
         const bookName = document.getElementById('bookName').value;
 
-        //Obtain song title and author from chatGpt output
+        // Extracts song title and author from chatGpt output
         const songElements = document.querySelectorAll('#chatGptOutput li');
         const songRegex = /"\s*([^"]+)"\s+by\s+([^\d]+)/g;
         const songs = Array.from(songElements).map(el => {
@@ -38,7 +38,7 @@ export const openWithSpotifyButton = async () => {
             return null;
         }).filter(song => song !== null);
 
-        // Search for songs and collect their URIs
+        // Searches for songs on Spotify and retrieves their URIs
         const songUris = [];
         const notFoundSongs = [];
         for (const song of songs) {
@@ -70,7 +70,7 @@ export const openWithSpotifyButton = async () => {
             errorText.innerHTML = 'The following songs were not found on Spotify and could not be added to the playlist:<br>' + notFoundList;
         }               
 
-        // Create playlist on Spotify
+        // Creates playlist on Spotify
         const createPlaylistResponse = await fetch('http://localhost:3000/create-playlist', {
             method: 'POST',
             headers: {
@@ -83,7 +83,7 @@ export const openWithSpotifyButton = async () => {
         const playlistUrl = createPlaylistData.playlistUrl;
         const playlistId = createPlaylistData.playlistId;
 
-        // Add songs to the playlist
+        // Adds songs to the playlist
         await fetch('http://localhost:3000/add-songs-to-playlist', {
             method: 'POST',
             headers: {
@@ -94,6 +94,7 @@ export const openWithSpotifyButton = async () => {
 
         spinner.style.display = 'none';
 
+        // Opens the playlist URL in a new tab
         window.open(playlistUrl, '_blank');
         openPlaylistButton.disabled = true;
 
