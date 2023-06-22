@@ -1,4 +1,4 @@
-let isLoggedIn = false;
+export let isLoggedIn = false;
 
 document.addEventListener("DOMContentLoaded", function () {
     fetch('/spotify-client-id')
@@ -28,7 +28,7 @@ const updateLoginButton = () => {
         .catch(error => console.error('Error fetching user profile:', error));
 };
 
-const logoutUser = () => {
+export function logoutUser () {
     const url = 'https://www.spotify.com/logout/';
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
     setTimeout(() => {
