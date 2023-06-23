@@ -39,7 +39,7 @@ export const openWithSpotifyButton = async () => {
         const songUris = [];
         const notFoundSongs = [];
         for (const song of songs) {
-            const response = await fetch('http://localhost:3000/search-song', {
+            const response = await fetch('https://your-heroku-app.herokuapp.com/search-song', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const openWithSpotifyButton = async () => {
         }               
 
         // Creates playlist on Spotify
-        const createPlaylistResponse = await fetch('http://localhost:3000/create-playlist', {
+        const createPlaylistResponse = await fetch('https://your-heroku-app.herokuapp.com/create-playlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const openWithSpotifyButton = async () => {
         const playlistId = createPlaylistData.playlistId;
 
         // Adds songs to the playlist
-        await fetch('http://localhost:3000/add-songs-to-playlist', {
+        await fetch('https://your-heroku-app.herokuapp.com/add-songs-to-playlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

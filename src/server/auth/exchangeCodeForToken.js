@@ -5,7 +5,7 @@ dotenv.config();
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-const redirectUri = 'http://localhost:3000/callback';
+const redirectUri = 'https://your-heroku-app.herokuapp.com/callback';
 
 //Exchanges the authorization code for an access token and refresh token
 export const exchangeCodeForToken = async (authorizationCode) => {
