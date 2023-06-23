@@ -8,13 +8,8 @@ export const openWithSpotifyButton = async () => {
     const spinner = document.getElementById('spinnerSpotifyPlaylist');
 
     openPlaylistButton.disabled = false;
-
-    // Checks if the user is logged in with Spotify
-    const loginStatusResponse = await fetch('/is-logged-in');
-    const loginStatusData = await loginStatusResponse.json();
-    const isLoggedIn = loginStatusData.isLoggedIn;
     
-    if (isLoggedIn) { 
+    if (spotifyLoginButton.classList.contains('logged-in')) { 
         spotifyLoginButton.classList.remove('flashing');
         spinner.style.display = 'block';
 
