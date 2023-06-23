@@ -85,7 +85,7 @@ app.get('/callback', async (req, res) => {
     if (tokens && tokens.accessToken) {
         // Set the access token and refresh token in the server
         setAccessToken(tokens.accessToken, tokens.refreshToken, 3600);
-        res.redirect('https://your-heroku-app.herokuapp.com/');
+        res.redirect('https://bookbeats-187997a9d1fc.herokuapp.com');
     } else {
         res.status(500).send('Error during authorization');
     }

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(clientId => {
             const spotifyLoginButton = document.getElementById('spotifyLoginButton');
             // Set the login button href with the Spotify authorization URL
-            spotifyLoginButton.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=https://your-heroku-app.herokuapp.com/callback&scope=playlist-modify-private`;
+            spotifyLoginButton.href = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=https://bookbeats-187997a9d1fc.herokuapp.com/callback&scope=playlist-modify-private`;
         });
     // Update the login button based on the user's login status
     updateLoginButton();
