@@ -1,3 +1,5 @@
+import { displayError } from './displayError.js';
+
 export const openWithSpotifyButton = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
@@ -99,9 +101,7 @@ export const openWithSpotifyButton = async () => {
         openPlaylistButton.disabled = true;
 
     } else {
-        spinner.style.display = 'none';
-        errorMessage.style.display = 'block';
-        errorText.textContent = 'Please log in with Spotify to create a playlist.';
+        displayError('Please log in with Spotify to create a playlist.');
         spotifyLoginButton.classList.add('flashing');
     }
 };
