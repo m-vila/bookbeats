@@ -25,7 +25,7 @@ export const fetchChatGptResponse = async () => {
 
     try {
         // Fetch chatGpt response from the API
-        const response = await fetch('http://localhost:3000/fetch-chat-gpt-response', {
+        const response = await fetch('https://your-heroku-app.herokuapp.com/fetch-chat-gpt-response', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

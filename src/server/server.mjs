@@ -85,7 +85,7 @@ app.get('/callback', async (req, res) => {
     if (tokens && tokens.accessToken) {
         // Set the access token and refresh token in the server
         setAccessToken(tokens.accessToken, tokens.refreshToken, 3600);
-        res.redirect('http://localhost:3000/');
+        res.redirect('https://your-heroku-app.herokuapp.com/');
     } else {
         res.status(500).send('Error during authorization');
     }
@@ -196,6 +196,7 @@ app.post('/add-songs-to-playlist', async (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
