@@ -1,3 +1,5 @@
+import { displayError } from './displayError.js';
+
 export const openWithSpotifyButton = async () => {
     const errorMessage = document.getElementById('errorMessage');
     const errorText = document.getElementById('errorText');
@@ -6,13 +8,8 @@ export const openWithSpotifyButton = async () => {
     const spinner = document.getElementById('spinnerSpotifyPlaylist');
 
     openPlaylistButton.disabled = false;
-
-    // Checks if the user is logged in with Spotify
-    const loginStatusResponse = await fetch('/is-logged-in');
-    const loginStatusData = await loginStatusResponse.json();
-    const isLoggedIn = loginStatusData.isLoggedIn;
     
-    if (isLoggedIn) { 
+    if (spotifyLoginButton.classList.contains('logged-in')) { 
         spotifyLoginButton.classList.remove('flashing');
         spinner.style.display = 'block';
 
@@ -99,9 +96,7 @@ export const openWithSpotifyButton = async () => {
         openPlaylistButton.disabled = true;
 
     } else {
-        spinner.style.display = 'none';
-        errorMessage.style.display = 'block';
-        errorText.textContent = 'Please log in with Spotify to create a playlist.';
+        displayError('Please log in with Spotify to create a playlist.');
         spotifyLoginButton.classList.add('flashing');
     }
 };
