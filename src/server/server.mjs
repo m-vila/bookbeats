@@ -195,12 +195,6 @@ app.post('/add-songs-to-playlist', async (req, res) => {
     }
 });
 
-// Check if the user is logged in
-app.get('/is-logged-in', async (req, res) => {
-    const accessToken = await getAccessToken();
-    res.json({ isLoggedIn: !!accessToken });
-});
-
 // Start the server
 app.listen(3000, () => {
     console.log('Server running on port 3000');
