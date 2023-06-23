@@ -1,0 +1,31 @@
+{
+  "name": "bookbeats",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "BookBeats is a web app that generates Spotify playlists based on a book's theme using ChatGPT & Google Books. Simply insert the title, author, and song count for a custom reading soundtrack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server/server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-vila/bookbeats.git"
+  },
+  "keywords": ["bookbeats", "music", "playlist", "web app"],
+  "author": "Marta Vila and ChatGPT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-vila/bookbeats/issues"
+  },
+  "homepage": "https://github.com/m-vila/bookbeats#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.1"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25"
+  }
+}
