@@ -21,11 +21,16 @@ h1 {
     line-height: 1.5;
 }
 
+h4 {
+    margin-bottom: 2%;
+}
+
 #bookName {
     width: 400px;
     padding: 10px;
     border-radius: 5px;
     border: none;
+    font-size: 15px;
 }
 
 #autocomplete-list {
@@ -62,10 +67,12 @@ h1 {
     padding: 10px;
     border-radius: 5px;
     border: none;
+    font-size: 15px;
 }
 
 #generatePlaylist {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: bold;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -112,7 +119,7 @@ h1 {
 #chatGptOutput {
     display: none;
     list-style-type: none;
-    max-width: 626px;
+    max-width: 628px;
     margin-top: 20px;
     width: 80%;
     max-height: 300px;
@@ -166,6 +173,7 @@ h1 {
     font-size: 16px;
     text-decoration: none;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
@@ -202,7 +210,8 @@ h1 {
     border-radius: 5px;
     background-color: #1DB954;
     color: #F4EBE8;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
