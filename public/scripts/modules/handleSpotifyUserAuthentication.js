@@ -40,10 +40,16 @@ const updateLoginButton = () => {
 export function logoutUser () {
     const url = 'https://www.spotify.com/logout/';
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
-    setTimeout(() => {
-        spotifyLogoutWindow.close();
-        resetButtons();
-    }, 2000);
+    fetch('/logout')
+        .then(() => {
+            setTimeout(() => {
+                spotifyLogoutWindow.close();
+                resetButtons();
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Error logging out:', error);
+        });
 };
 
 // Function to reset the login buttons
