@@ -112,7 +112,7 @@ h1 {
 #chatGptOutput {
     display: none;
     list-style-type: none;
-    max-width: 600px;
+    max-width: 630px;
     margin-top: 20px;
     width: 80%;
     max-height: 200px;
