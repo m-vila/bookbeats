@@ -112,10 +112,10 @@ h1 {
 #chatGptOutput {
     display: none;
     list-style-type: none;
-    max-width: 630px;
+    max-width: 626px;
     margin-top: 20px;
     width: 80%;
-    max-height: 200px;
+    max-height: 300px;
     overflow: auto;
     background-color: #390099;
     color: #F4EBE8;
