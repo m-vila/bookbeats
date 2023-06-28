@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -193,6 +194,24 @@ app.post('/add-songs-to-playlist', async (req, res) => {
         console.error('Error adding songs to playlist:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+// Configure Express session
+app.use(session({
+    secret: process.env.SPOTIFY_CLIENT_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }))
+
+// Handle Spotify logout 
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return console.error('Logout error:', err);
+        }
+        res.send({ message: 'Successfully logged out.' });
+    });
 });
 
 // Start the server

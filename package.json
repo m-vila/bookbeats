@@ -12,7 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/m-vila/bookbeats.git"
   },
-  "keywords": ["bookbeats", "music", "playlist", "web app"],
+  "keywords": [
+    "bookbeats",
+    "music",
+    "playlist",
+    "web app"
+  ],
   "author": "Marta Vila and ChatGPT",
   "license": "ISC",
   "bugs": {
@@ -23,6 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "node-fetch": "^3.3.1"
   }
 }
