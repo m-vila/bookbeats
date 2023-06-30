@@ -12,20 +12,8 @@ The MVP is straightforward, intuitive, and easy to navigate. Enter the title and
 
 Curious about the creative process behind BookBeats, from idea to MVP? [Read my latest blog post](https://medium.com/@marta.vila.garrido/bookbeats-hitting-the-right-note-my-first-ai-project-journey-from-idea-to-mvp-4b1f65c4adeb) for all the details.
 
-## **Deployed version**
+## ⚠️ Important Update
 
-BookBeats is available as a web application on Heroku. 
-You can access it by [clicking here](https://bookbeats-187997a9d1fc.herokuapp.com)
+BookBeats runs on OpenAI and Heroku credit. The credit limit has been reached, so the app will not generate more playlists. 
 
-## ⚠️ Important: Spotify Account Integration
-
-To export the generated playlist to your Spotify account, please follow these steps:
-
-1. Email your Spotify account email address to martasflat@gmail.com.
-2. Your email will be added to the user management section of BookBeats.
-3. Access is limited to 25 users, for this reason, yours will remain active for a maximum of 24 hours.
-4. Once enabled, you can log in and export playlists directly to your Spotify account.
-
-Please note that BookBeats runs on OpenAI credit. When this credit limit is reached, the app will temporarily stop generating playlists.
-
-Enjoy! 🎉
+Thank you so much for testing it, for your feedback, and for your support! 🎉
