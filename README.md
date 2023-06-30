@@ -14,6 +14,45 @@ Curious about the creative process behind BookBeats, from idea to MVP? [Read my 
 
 ## ⚠️ Important Update
 
-BookBeats runs on OpenAI and Heroku credit. The credit limit has been reached, so the app will not generate more playlists. 
+BookBeats runs on OpenAI and Heroku credit. The credit limit has been reached, so the app will not generate more playlists.
 
-Thank you so much for testing it, for your feedback, and for your support! 🎉
+But if you have your own OpenAI API Key, Google Books API Key and Spotify client ID and secret, feel free to test it locally!
+
+## **Running BookBeats Locally**
+
+Follow these steps to run BookBeats on your local machine:
+
+**Prerequisites**
+1. Node.js: You will need Node.js installed on your machine. You can download it from [Node.js](https://nodejs.org/en) official website.
+
+2. You will need to have your own API keys for the OpenAI GPT-3 API, Google Books API, and Spotify API. Please refer to the corresponding official documentation on how to obtain these.
+
+**Setup:**
+1. Clone the repository to your local machine.
+
+2. Navigate to the project directory in your terminal.
+
+3. Install the necessary packages by running the following command:
+
+```
+npm install express node-fetch cors dotenv
+```
+
+4. Create a .env file in the root of the project with your OpenAI, Spotify and Google Books API keys:
+
+```
+OPENAIAPI_KEY = <Your OpenAI API Key>
+SPOTIFY_CLIENT_ID = <Your Spotify Client ID>
+SPOTIFY_CLIENT_SECRET = <Your Spotify Client Secret>
+GOOGLEBOOKS_API_KEY = <Your Google Books API Key>
+```
+
+5. Once everything is set up, you can run the application from the root of the project using the following command:
+
+```
+node src/server/server.mjs
+```
+
+6. Open your web browser and go to http://localhost:3000.
+
+7. Enjoy 🎉
