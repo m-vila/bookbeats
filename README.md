@@ -10,7 +10,7 @@ And so, BookBeats was born 🎉 It's a tool designed to amplify your reading exp
 
 The MVP is straightforward, intuitive, and easy to navigate. Enter the title and author of the book you're currently hooked on, and let the application work its magic by connecting to Google Books API to find the book. Because seriously, unless it's your all-time favorite book, who has the time or memory to recall both the title AND the author's name? And let's not even get started on how to spell 'Fyodor Dostoevsky' correctly on the first try 🧐. Once the book is successfully tracked down, the app uses the ChatGPT API to curate a custom playlist of songs inspired by the book theme. And finally, it integrates with Spotify, allowing you to listen to the generated playlist while you devour your book.
 
-Curious about the creative process behind BookBeats, from idea to MVP? [Read my latest blog post](https://medium.com/@marta.vila.garrido/bookbeats-hitting-the-right-note-my-first-ai-project-journey-from-idea-to-mvp-4b1f65c4adeb) for all the details.
+Curious about the creative process behind BookBeats, from idea to MVP? [Read my latest blog post](https://medium.com/@marta.vila.garrido/bookbeats-hitting-the-right-note-my-first-ai-project-journey-from-idea-to-mvp-4b1f65c4adeb) for all the details and check out [this demo video to see the app in action!](https://youtu.be/G3m_TwcUlOs)
 
 ## ⚠️ Important Update
 
